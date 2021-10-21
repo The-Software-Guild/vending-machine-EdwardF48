@@ -5,7 +5,9 @@ import dao.VendingMachineDao;
 import dao.VendingMachineDaoFileImpl;
 import service.VendingMachineServiceLayer;
 import service.VendingMachineServiceLayerImpl;
-import ui.*;
+import ui.UserIO;
+import ui.UserIOConsoleImpl;
+import ui.VendingMachineView;
 
 public class App {
     //To Do:
@@ -19,5 +21,4 @@ public class App {
         VendingMachineController controller = new VendingMachineController(myService, myView);
         controller.run();
     }
-
 }

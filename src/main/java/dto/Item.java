@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.Objects;
+
 public class Item {
 
     private String name;
@@ -7,7 +9,7 @@ public class Item {
     private int cost;
     private int stockLeft;
 
-    public Item(String code,String name,  int cost, int stockLeft) {
+    public Item(String code, String name, int cost, int stockLeft) {
         this.name = name;
         this.code = code;
         this.cost = cost;
@@ -48,8 +50,20 @@ public class Item {
 
     @Override
     public String toString() {
-        String out = getCode() + ": " + getName() + ": £" + String.format("%.2f",((float) getCost() /100));
+        String out = getCode() + ": " + getName() + ": £" + String.format("%.2f", ((float) getCost() / 100));
         return out;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return cost == item.cost && stockLeft == item.stockLeft && name.equals(item.name) && code.equals(item.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, code, cost, stockLeft);
+    }
 }

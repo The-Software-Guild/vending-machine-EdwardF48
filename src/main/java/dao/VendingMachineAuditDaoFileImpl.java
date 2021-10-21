@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
-public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao{
+public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao {
     public static final String AUDIT_FILE = "audit.txt";
+
     @Override
     public void writeAuditEntry(String entry) throws VendingMachinePersistenceException {
         PrintWriter out;
@@ -18,7 +19,7 @@ public class VendingMachineAuditDaoFileImpl implements VendingMachineAuditDao{
         }
 
         LocalDateTime timestamp = LocalDateTime.now();
-        out.println(timestamp.toString() + " : " + entry);
+        out.println(timestamp + " : " + entry);
         out.flush();
     }
 

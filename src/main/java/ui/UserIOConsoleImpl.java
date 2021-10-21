@@ -2,7 +2,7 @@ package ui;
 
 import java.util.Scanner;
 
-public class UserIOConsoleImpl implements UserIO{
+public class UserIOConsoleImpl implements UserIO {
 
     @Override
     public void print(String message) {
@@ -29,10 +29,10 @@ public class UserIOConsoleImpl implements UserIO{
     public int readInt(String prompt, int min, int max) {
         Scanner userInput = new Scanner(System.in);
         Integer response;
-        while(true) {
+        while (true) {
             System.out.println(prompt);
             response = Integer.parseInt(userInput.nextLine());
-            if (response <= max && response >= min){
+            if (response <= max && response >= min) {
                 break;
             }
         }
@@ -51,10 +51,10 @@ public class UserIOConsoleImpl implements UserIO{
     public double readDouble(String prompt, double min, double max) {
         Scanner userInput = new Scanner(System.in);
         Double response;
-        while(true) {
+        while (true) {
             System.out.println(prompt);
             response = Double.parseDouble(userInput.nextLine());
-            if (response <= max && response >= min){
+            if (response <= max && response >= min) {
                 break;
             }
         }
@@ -73,10 +73,10 @@ public class UserIOConsoleImpl implements UserIO{
     public float readFloat(String prompt, float min, float max) {
         Scanner userInput = new Scanner(System.in);
         Float response;
-        while(true) {
+        while (true) {
             System.out.println(prompt);
             response = Float.parseFloat(userInput.nextLine());
-            if (response <= max && response >= min){
+            if (response <= max && response >= min) {
                 break;
             }
         }
@@ -95,10 +95,10 @@ public class UserIOConsoleImpl implements UserIO{
     public long readLong(String prompt, long min, long max) {
         Scanner userInput = new Scanner(System.in);
         Long response;
-        while(true) {
+        while (true) {
             System.out.println(prompt);
             response = Long.parseLong(userInput.nextLine());
-            if (response <= max && response >= min){
+            if (response <= max && response >= min) {
                 break;
             }
         }
@@ -111,16 +111,16 @@ public class UserIOConsoleImpl implements UserIO{
 
         String amountString;
         int output;
-        while(true){
+        while (true) {
             System.out.println(prompt);
             amountString = userInput.nextLine();
             int decimalPosition = amountString.indexOf(".");
-            if (decimalPosition==-1 || amountString.length()-decimalPosition <=3){
-                try{
-                    output = (int) (Float.parseFloat(amountString) *100);
+            if (decimalPosition == -1 || amountString.length() - decimalPosition <= 3) {
+                try {
+                    output = (int) (Float.parseFloat(amountString) * 100);
                     break;
-                }catch(NumberFormatException e){
-                    System.out.println("Not a valid input");;
+                } catch (NumberFormatException e) {
+                    System.out.println("Not a valid input");
                 }
             }
 

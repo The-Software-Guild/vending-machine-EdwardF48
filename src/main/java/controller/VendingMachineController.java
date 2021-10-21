@@ -12,8 +12,8 @@ import java.util.List;
 
 public class VendingMachineController {
 
-    private VendingMachineView view;
-    private VendingMachineServiceLayer service;
+    private final VendingMachineView view;
+    private final VendingMachineServiceLayer service;
     private int funds = 0;
 
     public VendingMachineController(VendingMachineServiceLayer service, VendingMachineView view) {
@@ -49,12 +49,12 @@ public class VendingMachineController {
             }
             exitSequence(funds);
         } catch (
-    VendingMachinePersistenceException e) {
+                VendingMachinePersistenceException e) {
             view.displayErrorMessage(e.getMessage());
         }
     }
 
-    private void exitSequence(int funds) throws VendingMachinePersistenceException{
+    private void exitSequence(int funds) throws VendingMachinePersistenceException {
         service.exitSequence();
         int[] coinChangeList = ChangeCalculator.CalculateChange(funds);
         view.displayChange(coinChangeList);
@@ -66,23 +66,23 @@ public class VendingMachineController {
         service.bootUpSequence();
     }
 
-    public void AddFunds(){
+    public void AddFunds() {
         funds += view.getFundsEntered();
     }
 
-    public void viewInventory() throws VendingMachinePersistenceException{
+    public void viewInventory() throws VendingMachinePersistenceException {
         List<Item> inventory = service.getAvailableItems();
         view.ShowItems(inventory);
     }
 
     public void buyItem() throws VendingMachinePersistenceException {
         viewInventory();
-        try{
+        try {
             String itemCode = view.getItemCodeChoice();
             Item boughtItem = service.buyItem(itemCode, funds);
             funds -= boughtItem.getCost();
             view.displayBuyResult(boughtItem);
-        } catch(NoItemInventoryException|InsufficientFundsException e){
+        } catch (NoItemInventoryException | InsufficientFundsException e) {
             view.displayErrorMessage(e.getMessage());
         }
     }

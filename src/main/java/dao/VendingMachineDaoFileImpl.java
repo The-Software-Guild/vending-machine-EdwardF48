@@ -5,23 +5,24 @@ import dto.Item;
 import java.io.*;
 import java.util.*;
 
-public class VendingMachineDaoFileImpl implements VendingMachineDao{
+public class VendingMachineDaoFileImpl implements VendingMachineDao {
 
-    private Map<String, Item> inventory = new HashMap<>();
+    private final Map<String, Item> inventory = new HashMap<>();
     private final String INVENTORY_FILE;
     public static final String DELIMITER = "::";
 
-    public VendingMachineDaoFileImpl(){
+    public VendingMachineDaoFileImpl() {
         INVENTORY_FILE = "inventory.txt";
     }
-    public VendingMachineDaoFileImpl(String inventoryTextFile){
+
+    public VendingMachineDaoFileImpl(String inventoryTextFile) {
         INVENTORY_FILE = inventoryTextFile;
     }
 
-    private Item unmarshallItem(String itemAsText){
+    private Item unmarshallItem(String itemAsText) {
         //Code::Name::Cost::Stock
         String[] itemTokens = itemAsText.split(DELIMITER);
-        Item itemFromFile = new Item(itemTokens[0],itemTokens[1],Integer.parseInt(itemTokens[2]),Integer.parseInt(itemTokens[3]));
+        Item itemFromFile = new Item(itemTokens[0], itemTokens[1], Integer.parseInt(itemTokens[2]), Integer.parseInt(itemTokens[3]));
         return itemFromFile;
     }
 
@@ -49,7 +50,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
         scanner.close();
     }
 
-    private String marshallItem(Item aItem){
+    private String marshallItem(Item aItem) {
         //Code::Name::Cost::Stock
         String itemAsText = aItem.getCode() + DELIMITER;
         itemAsText += aItem.getName() + DELIMITER;
@@ -60,7 +61,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
     }
 
     @Override
-    public void saveInventory() throws VendingMachinePersistenceException{
+    public void saveInventory() throws VendingMachinePersistenceException {
         PrintWriter out;
 
         try {
@@ -86,7 +87,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
 
     @Override
     public Item buyItem(String itemCode) throws VendingMachinePersistenceException {
-        inventory.get(itemCode).setStockLeft(inventory.get(itemCode).getStockLeft() -1);
+        inventory.get(itemCode).setStockLeft(inventory.get(itemCode).getStockLeft() - 1);
         saveInventory();
         return inventory.get(itemCode);
     }
