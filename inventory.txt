@@ -1,4 +1,0 @@
-A1::Mars Bar::50::10
-A2::Snickers Bar::60::7
-A3::Walkers Crisps::35::4
-A4::Dream Bar::50::0
